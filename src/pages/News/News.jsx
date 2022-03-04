@@ -17,8 +17,6 @@ function News() {
       <Pagination currentPage={1} onClick={() => {}} pageCount={10} />
       <NewsItem />
       {arr.map(({ title, text }) => <NewsItem title={title} text={text} />)}
-      {arr.map(({ title, text }) => <NewsItem title={title} text={text} />)}
-
     </>
   );
 }
