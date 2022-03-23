@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 //
 import React from 'react';
@@ -8,6 +9,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import * as moment from 'moment';
 import SimpleModal from './Modal';
 
 const useStyles = makeStyles({
@@ -27,32 +29,20 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard() {
+export default function SimpleCard({ newsTitle, newsText, newsDate }) {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
-
+  const actualDateFormatted = moment(newsDate).locale('ru').format('DD.MM.YYYY');
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word wild news
+          {newsTitle}
         </Typography>
         <Typography variant="h5" component="h2">
-          be
-          {bull}
-          nev
-          {bull}
-          o
-          {bull}
-          lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
+          {newsText.substring(0, 200)}
         </Typography>
         <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          'or not'
+          {actualDateFormatted}
         </Typography>
       </CardContent>
       <CardActions>

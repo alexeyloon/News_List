@@ -11,16 +11,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function PaginationOutlined({ pageCount, onClick, currentPage }) {
+function PaginationOutlined({ totalPages, onButtonClick, currentPage }) {
   const classes = useStyles();
   return (
     <div>
       <div className={classes.root}>
         <Pagination
-          count={pageCount}
-          onChange={onClick}
+          onChange={onButtonClick}
           page={currentPage}
-          variant="outlined"
+          count={totalPages}
+
         />
       </div>
     </div>
@@ -28,8 +28,8 @@ function PaginationOutlined({ pageCount, onClick, currentPage }) {
 }
 
 PaginationOutlined.propTypes = {
-  pageCount: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
+  totalPages: PropTypes.number.isRequired,
+  onButtonClick: PropTypes.func.isRequired,
   currentPage: PropTypes.number.isRequired,
 };
 export default PaginationOutlined;
