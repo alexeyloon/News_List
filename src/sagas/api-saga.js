@@ -5,18 +5,11 @@ import {
   put,
   select,
 } from 'redux-saga/effects';
-import { fetchNews } from '../redux/apis';
-import { getNewsSuccess, getNewsError } from '../redux/News/news.actions';
+import { fetchNews, fetchNewsRecord } from '../redux/apis';
+import {
+  getNewsSuccess, getNewsError, getNewsRecordSuccess, getNewsRecordError,
+} from '../redux/News/news.actions';
 
-// function* getNewsSaga(action) {
-//   try {
-//     // eslint-disable-next-line no-use-before-define
-//     const payload = yield call(fetchNews);
-//     yield put({ type: 'GET_NEWS_SUCCESS', payload });
-//   } catch (e) {
-//     yield put({ type: 'GET_NEWS_ERROR' });
-//   }
-// }
 function* getNewsSaga() {
   try {
     const currentPage = yield select((state) => state.news.currentPage);
@@ -32,7 +25,19 @@ function* getNewsSaga() {
   }
 }
 
+function* getNewsRecordSaga(action) {
+  try {
+    console.log(action);
+    const payload = yield call(fetchNewsRecord, action.payload);
+
+    yield put(getNewsRecordSuccess(payload));
+  } catch (e) {
+    yield put(getNewsRecordError());
+  }
+}
+
 export default function* watcherSaga() {
   // eslint-disable-next-line no-use-before-define
   yield takeLatest('GET_NEWS_REQUEST', getNewsSaga);
+  yield takeLatest('GET_NEWS_RECORD_REQUEST', getNewsRecordSaga);
 }
