@@ -27,8 +27,7 @@ function* getNewsSaga() {
 
 function* getNewsRecordSaga(action) {
   try {
-    console.log(action);
-    const payload = yield call(fetchNewsRecord, action.payload);
+    const payload = yield call(fetchNewsRecord, action.id);
 
     yield put(getNewsRecordSuccess(payload));
   } catch (e) {

@@ -50,7 +50,9 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         isLoading: false,
         newsList: action.payload.items,
-        newsRecord: action.payload.newsRecord,
+        // newsRecord: action.payload.newsRecord,
+        newsRecord: action.payload,
+        // newsRecord: action.payload,
       };
     case GET_NEWS_RECORD_ERROR:
       return {

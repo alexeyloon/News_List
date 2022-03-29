@@ -1,0 +1,15 @@
+.modal {
+border: 5px solid green;
+padding:  20px;
+border-radius: 15px;
+height: 75vh;
+width: 75vw;
+background-color:white ;
+position: fixed;
+top: 0;
+left: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+

@@ -6,9 +6,11 @@ function ModalWindow({
   open, children, onClose, id,
 }) {
   return (
+
     <Modal onClose={onClose} id={id} open={open}>
       {children}
     </Modal>
+
   );
 }
 
