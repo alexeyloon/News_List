@@ -2,8 +2,8 @@
 border: 5px solid green;
 padding:  20px;
 border-radius: 15px;
-height: 75vh;
-width: 75vw;
+height: 50vh;
+width: 50vw;
 background-color:white ;
 position: fixed;
 top: 0;
@@ -13,3 +13,17 @@ align-items: center;
 justify-content: center;
 }
 
+.news-container {
+    border: 5px solid green;
+padding:  20px;
+border-radius: 15px;
+height: 80vh;
+width: 80vw;
+background-color:white ;
+position: fixed;
+top: 0;
+left: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+}

@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Pagination from '@material-ui/lab/Pagination';
 import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import NewsItem from '../../components/NewsItem';
+import ShowModalWindow from '../../components/ShowModalWindow';
 
 import { getNewsRequest, setCurrentPage, getNewsRecordRequest } from '../../redux/News/news.actions';
 import ModalWindow from '../../components/Modal/Modal';
@@ -22,14 +21,14 @@ function News() {
 
   const [open, setOpen] = React.useState(false);
 
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   const handleClose = () => {
     setOpen(false);
   };
-    // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   const arr = [
     {
       title: '1',
@@ -43,24 +42,28 @@ function News() {
   }, [currentPage]);
 
   const showFull = (id) => {
-    console.log(`id:${id}`);
+    // console.log(`id:${id}`);
     dispatch(getNewsRecordRequest(id));
     setOpen(true);
   };
 
   return (
     <>
-      {newsList && newsList.map((oneNews) => (
-        <NewsItem
-          key={oneNews.id}
-          newsTitle={oneNews.title}
-          newsText={oneNews.text}
-          newsDate={oneNews.date}
-          id={oneNews.id}
-          showFull={showFull}
-        />
-      ))}
-
+      <CardActions>
+        <Button size="small" variant="contained" color="primary" onClick={handleOpen}>Add news</Button>
+      </CardActions>
+      <div className="news-container">
+        {newsList && newsList.map((oneNews) => (
+          <NewsItem
+            key={oneNews.id}
+            newsTitle={oneNews.title}
+            newsText={oneNews.text}
+            newsDate={oneNews.date}
+            id={oneNews.id}
+            showFull={showFull}
+          />
+        ))}
+      </div>
       <Pagination
         onChange={onButtonClick}
         page={currentPage}
@@ -71,22 +74,18 @@ function News() {
         onClose={handleClose}
         id={arr[0].id}
       >
-        <div className="modal">
-          <CardContent>
-            <Typography color="textSecondary" gutterBottom>
-              {selectedNewsRecord.title}
-            </Typography>
-            <Typography variant="h5" component="h2">
-              {selectedNewsRecord.text}
-            </Typography>
-            <Typography variant="body2" component="p">
-              {selectedNewsRecord.createdAt}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small" variant="contained" color="primary">Big Blue Butto</Button>
-          </CardActions>
-        </div>
+        {selectedNewsRecord.id
+          ? (
+            <ShowModalWindow
+              open={open}
+              title={selectedNewsRecord.title}
+              text={selectedNewsRecord.text}
+              createdAt={selectedNewsRecord.createdAt}
+              onClose={handleClose}
+
+            />
+          )
+          : <div />}
       </ModalWindow>
     </>
   );

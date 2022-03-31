@@ -14,8 +14,12 @@ function ModalWindow({
   );
 }
 
+ModalWindow.defaultProps = {
+  open: true,
+};
+
 ModalWindow.propTypes = {
-  open: PropTypes.bool.isRequired,
+  open: PropTypes.bool,
   children: PropTypes.objectOf({}).isRequired,
   onClose: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
