@@ -10,7 +10,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import * as moment from 'moment';
-import SimpleModal from './Modal';
 
 const useStyles = makeStyles({
   root: {
@@ -29,7 +28,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard({ newsTitle, newsText, newsDate }) {
+export default function NewsItem({
+  newsTitle, newsText, newsDate, id, showFull,
+}) {
   const classes = useStyles();
   const actualDateFormatted = moment(newsDate).locale('ru').format('DD.MM.YYYY');
   return (
@@ -46,7 +47,7 @@ export default function SimpleCard({ newsTitle, newsText, newsDate }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small"><SimpleModal /></Button>
+        <Button size="small" type="button" onClick={() => showFull(id)}>Read more</Button>
       </CardActions>
     </Card>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+// import { useSelector } from 'react-redux';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -29,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SimpleModal() {
+  // const newsRecord = useSelector((state) => state.news.newsRecord);
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -55,7 +57,7 @@ export default function SimpleModal() {
   return (
     <div>
       <button type="button" onClick={handleOpen}>
-        See More
+        News Info
       </button>
       <Modal
         open={open}
@@ -64,6 +66,8 @@ export default function SimpleModal() {
         aria-describedby="simple-modal-description"
       >
         {body}
+        {/* {newsRecord} */}
+        {/* {newsRecord.id ? (....) : form} */}
       </Modal>
     </div>
   );
