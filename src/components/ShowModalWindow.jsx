@@ -1,7 +1,7 @@
 import React from 'react';
 // import { useSelector } from 'react-redux';
 
-import CardContent from '@material-ui/core/Modal';
+import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
