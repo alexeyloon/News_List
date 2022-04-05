@@ -9,6 +9,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import DeleteIcon from '@material-ui/icons/Delete';
 import * as moment from 'moment';
 
 const useStyles = makeStyles({
@@ -29,12 +30,22 @@ const useStyles = makeStyles({
 });
 
 export default function NewsItem({
-  newsTitle, newsText, newsDate, id, showFull,
+  newsTitle, newsText, newsDate, id, showFull, deleteNews,
 }) {
   const classes = useStyles();
   const actualDateFormatted = moment(newsDate).locale('ru').format('DD.MM.YYYY');
   return (
+
     <Card className={classes.root}>
+      <Button
+        variant="contained"
+        color="secondary"
+        className={classes.button}
+        startIcon={<DeleteIcon />}
+        onClick={() => deleteNews(id)}
+      >
+        Delete
+      </Button>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
           {newsTitle}

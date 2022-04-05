@@ -5,9 +5,18 @@ import {
   put,
   select,
 } from 'redux-saga/effects';
-import { fetchNews, fetchNewsRecord } from '../redux/apis';
 import {
-  getNewsSuccess, getNewsError, getNewsRecordSuccess, getNewsRecordError,
+  fetchNews, fetchNewsRecord, fetchNewsDelete, fetchAddNews,
+} from '../redux/apis';
+import {
+  getNewsSuccess,
+  getNewsError,
+  getNewsRecordSuccess,
+  getNewsRecordError,
+  setCurrentPage,
+  addNewsRecordError,
+  // getNewsRequest,
+  addNewsRecordSuccess,
 } from '../redux/News/news.actions';
 
 function* getNewsSaga() {
@@ -35,8 +44,50 @@ function* getNewsRecordSaga(action) {
   }
 }
 
+function* deleteNewsRecordSaga(action) {
+  try {
+    const newsList = yield select((state) => state.news.newsList);
+    const totalPages = yield select((state) => state.news.totalPages);
+
+    yield call(fetchNewsDelete, action.id);
+    if (newsList.length === 1) {
+      yield put(setCurrentPage(totalPages - 1));
+    }
+
+    const currentPage = yield select((state) => state.news.currentPage);
+    const limit = yield select((state) => state.news.limit);
+    const payload = yield call(fetchNews, { page: currentPage, limit });
+
+    yield put(getNewsSuccess(payload));
+  } catch (error) {
+    yield put(getNewsError());
+  }
+}
+
+function* addNewsRecordSaga(action) {
+  try {
+    const newsList = yield select((state) => state.news.newsList);
+    const totalPages = yield select((state) => state.news.totalPages);
+
+    yield call(fetchAddNews, action.id);
+    if (newsList.length === 1) {
+      yield put(setCurrentPage(totalPages + 1));
+    }
+
+    const currentPage = yield select((state) => state.news.currentPage);
+    const limit = yield select((state) => state.news.limit);
+    const payload = yield call(fetchNews, { page: currentPage, limit });
+
+    yield put(addNewsRecordSuccess(payload));
+  } catch (error) {
+    yield put(addNewsRecordError());
+  }
+}
+
 export default function* watcherSaga() {
   // eslint-disable-next-line no-use-before-define
   yield takeLatest('GET_NEWS_REQUEST', getNewsSaga);
   yield takeLatest('GET_NEWS_RECORD_REQUEST', getNewsRecordSaga);
+  yield takeLatest('DELETE_NEWS_RECORD_REQUEST', deleteNewsRecordSaga);
+  yield takeLatest('ADD_NEWS_RECORD_REQUEST', addNewsRecordSaga);
 }

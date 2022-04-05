@@ -6,6 +6,15 @@ import {
   GET_NEWS_RECORD_REQUEST,
   GET_NEWS_RECORD_SUCCESS,
   GET_NEWS_RECORD_ERROR,
+  DELETE_NEWS_RECORD_REQUEST,
+  DELETE_NEWS_RECORD_SUCCESS,
+  DELETE_NEWS_RECORD_ERROR,
+  CLEAN_NEWS_RECORD_REQUEST,
+  CLEAN_NEWS_RECORD_SUCCESS,
+  CLEAN_NEWS_RECORD_ERROR,
+  ADD_NEWS_RECORD_REQUEST,
+  ADD_NEWS_RECORD_SUCCESS,
+  ADD_NEWS_RECORD_ERROR,
 } from './news.types';
 
 export const getNewsRequest = () => ({
@@ -38,4 +47,44 @@ export const getNewsRecordSuccess = (payload) => ({
 
 export const getNewsRecordError = () => ({
   type: GET_NEWS_RECORD_ERROR,
+});
+// delete news with cleaning store
+
+export const deleteNewsRecordRequest = (id) => ({
+  type: DELETE_NEWS_RECORD_REQUEST, id,
+});
+
+export const deleteNewsRecordSuccess = (payload) => ({
+  type: DELETE_NEWS_RECORD_SUCCESS,
+  payload,
+});
+
+export const deleteNewsRecordError = () => ({
+  type: DELETE_NEWS_RECORD_ERROR,
+});
+
+export const cleanNewsRecordRequest = (id) => ({
+  type: CLEAN_NEWS_RECORD_REQUEST, id,
+});
+
+export const cleanNewsRecordSuccess = (payload) => ({
+  type: CLEAN_NEWS_RECORD_SUCCESS,
+  payload,
+});
+
+export const cleanNewsRecordError = () => ({
+  type: CLEAN_NEWS_RECORD_ERROR,
+});
+
+export const addNewsRecordRequest = (id) => ({
+  type: ADD_NEWS_RECORD_REQUEST, id,
+});
+
+export const addNewsRecordSuccess = (payload) => ({
+  type: ADD_NEWS_RECORD_SUCCESS,
+  payload,
+});
+
+export const addNewsRecordError = () => ({
+  type: ADD_NEWS_RECORD_ERROR,
 });
