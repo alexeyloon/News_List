@@ -58,9 +58,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isLoading: false,
-        // newsRecord: action.payload.newsRecord,
         newsRecord: action.payload,
-        // newsRecord: action.payload,
       };
     case GET_NEWS_RECORD_ERROR:
       return {

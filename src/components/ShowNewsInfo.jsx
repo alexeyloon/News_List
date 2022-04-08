@@ -1,13 +1,13 @@
 import React from 'react';
-// import { useSelector } from 'react-redux';
 
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+
 import PropTypes from 'prop-types';
 
-function ShowModalWindow({
+function ShowNewsInfo({
   title, onClose, createdAt, text,
 }) {
   return (
@@ -24,19 +24,18 @@ function ShowModalWindow({
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" variant="contained" color="primary" onClose={onClose}>Close</Button>
+        <Button size="small" variant="contained" color="primary" onClick={onClose}>Close</Button>
       </CardActions>
     </div>
 
   );
 }
 
-ShowModalWindow.propTypes = {
+ShowNewsInfo.propTypes = {
   title: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
   createdAt: PropTypes.string.isRequired,
-
 };
 
-export default ShowModalWindow;
+export default ShowNewsInfo;

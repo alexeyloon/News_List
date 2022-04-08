@@ -6,15 +6,11 @@ export const GET_NEWS_REQUEST = 'GET_NEWS_REQUEST';
 
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
-//  getting information about one news item;
-
 export const GET_NEWS_RECORD_SUCCESS = 'GET_NEWS_RECORD_SUCCESS';
 
 export const GET_NEWS_RECORD_ERROR = 'GET_NEWS_RECORD_ERROR';
 
 export const GET_NEWS_RECORD_REQUEST = 'GET_NEWS_RECORD_REQUEST';
-
-// delete news from server
 
 export const DELETE_NEWS_RECORD_REQUEST = 'DELETE_NEWS_RECORD_REQUEST';
 
@@ -22,15 +18,11 @@ export const DELETE_NEWS_RECORD_ERROR = 'DELETE_NEWS_RECORD_ERROR';
 
 export const DELETE_NEWS_RECORD_SUCCESS = 'DELETE_NEWS_RECORD_SUCCESS';
 
-// cleaning news from store
-
 export const CLEAN_NEWS_RECORD_SUCCESS = 'CLEAN_NEWS_RECORD_SUCCESS';
 
 export const CLEAN_NEWS_RECORD_ERROR = 'CLEAN_NEWS_RECORD_ERROR';
 
 export const CLEAN_NEWS_RECORD_REQUEST = 'CLEAN_NEWS_RECORD_REQUEST';
-
-// add news record
 
 export const ADD_NEWS_RECORD_SUCCESS = 'ADD_NEWS_RECORD_SUCCESS';
 

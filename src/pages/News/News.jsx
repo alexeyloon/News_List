@@ -6,8 +6,9 @@ import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
 import TextField from '@mui/material/TextField';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+
 import NewsItem from '../../components/NewsItem';
-import ShowModalWindow from '../../components/ShowModalWindow';
+import ShowNewsInfo from '../../components/ShowNewsInfo';
 import {
   getNewsRequest,
   setCurrentPage,
@@ -26,7 +27,6 @@ function News() {
   const totalPages = useSelector((state) => state.news.totalPages);
   const selectedNewsRecord = useSelector((state) => state.news.newsRecord);
   const onButtonClick = (event, page) => dispatch(setCurrentPage(page));
-
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -35,18 +35,16 @@ function News() {
 
   const handleClose = () => {
     dispatch(cleanNewsRecordRequest(selectedNewsRecord.id));
-
     setOpen(false);
   };
   const [newsTitle, setNewsTitle] = useState('');
   const [newsText, setNewsText] = useState('');
   const handleNewsTitle = (event) => setNewsTitle(event.target.value);
-  console.log(newsText);
   const handleNewsText = (event) => setNewsText(event.target.value);
 
   const handleSave = () => {
     dispatch(addNewsRecordRequest({
-      createdAt: '12.12.12',
+      createdAt: selectedNewsRecord.createdAt,
       title: newsTitle,
       text: newsText,
     }));
@@ -54,7 +52,6 @@ function News() {
   };
 
   const isSaveButtonDisabled = (newsTitle.trim().length === 0 || newsText.trim().length === 0);
-  // eslint-disable-next-line no-unused-vars
   const arr = [
     {
       title: '1',
@@ -68,25 +65,19 @@ function News() {
   }, [currentPage]);
 
   const showFull = (id) => {
-    // console.log(`id:${id}`);
     dispatch(getNewsRecordRequest(id));
     setOpen(true);
   };
 
   const deleteNews = (id) => {
-    // console.log(id);
     dispatch(deleteNewsRecordRequest(id));
-    // setOpen(true);
   };
-
   return (
     <>
       <div className="news-container">
-
         <CardActions>
           <Button size="small" variant="contained" color="primary" onClick={handleOpen}>Add news</Button>
         </CardActions>
-
         {newsList && newsList.map((oneNews) => (
           <NewsItem
             key={oneNews.id}
@@ -111,7 +102,7 @@ function News() {
       >
         {selectedNewsRecord.id
           ? (
-            <ShowModalWindow
+            <ShowNewsInfo
               open={open}
               title={selectedNewsRecord.title}
               text={selectedNewsRecord.text}
@@ -125,7 +116,7 @@ function News() {
                 <div className="modal-header">
                   <TextField id="outlined-basic" label="Enter news title" variant="outlined" onChange={handleNewsTitle} />
                   <CardActions>
-                    <Button size="small" variant="contained" color="primary" onClick={handleClose}>Close</Button>
+                    <Button size="small" variant="contained" color="primary" onClose={handleClose}>Close</Button>
                   </CardActions>
                 </div>
                 <TextareaAutosize aria-label="minimum height" minRows={3} placeholder="Enter news text" onChange={handleNewsText} />

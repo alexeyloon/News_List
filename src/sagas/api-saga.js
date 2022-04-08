@@ -15,8 +15,9 @@ import {
   getNewsRecordError,
   setCurrentPage,
   addNewsRecordError,
-  // getNewsRequest,
   addNewsRecordSuccess,
+  deleteNewsRecordSuccess,
+  deleteNewsRecordError,
 } from '../redux/News/news.actions';
 
 function* getNewsSaga() {
@@ -58,9 +59,9 @@ function* deleteNewsRecordSaga(action) {
     const limit = yield select((state) => state.news.limit);
     const payload = yield call(fetchNews, { page: currentPage, limit });
 
-    yield put(getNewsSuccess(payload));
+    yield put(deleteNewsRecordSuccess(payload));
   } catch (error) {
-    yield put(getNewsError());
+    yield put(deleteNewsRecordError());
   }
 }
 
@@ -70,7 +71,7 @@ function* addNewsRecordSaga(action) {
     const totalPages = yield select((state) => state.news.totalPages);
 
     yield call(fetchAddNews, action.id);
-    if (newsList.length === 1) {
+    if (newsList.length === 3) {
       yield put(setCurrentPage(totalPages + 1));
     }
 
@@ -79,13 +80,13 @@ function* addNewsRecordSaga(action) {
     const payload = yield call(fetchNews, { page: currentPage, limit });
 
     yield put(addNewsRecordSuccess(payload));
+    yield put(getNewsRecordSuccess(payload));
   } catch (error) {
     yield put(addNewsRecordError());
   }
 }
 
 export default function* watcherSaga() {
-  // eslint-disable-next-line no-use-before-define
   yield takeLatest('GET_NEWS_REQUEST', getNewsSaga);
   yield takeLatest('GET_NEWS_RECORD_REQUEST', getNewsRecordSaga);
   yield takeLatest('DELETE_NEWS_RECORD_REQUEST', deleteNewsRecordSaga);
