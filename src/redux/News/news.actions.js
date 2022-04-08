@@ -34,7 +34,6 @@ export const setCurrentPage = (payload) => ({
   type: SET_CURRENT_PAGE,
   payload,
 });
-//  getting information about one news item;
 
 export const getNewsRecordRequest = (id) => ({
   type: GET_NEWS_RECORD_REQUEST, id,
@@ -48,7 +47,6 @@ export const getNewsRecordSuccess = (payload) => ({
 export const getNewsRecordError = () => ({
   type: GET_NEWS_RECORD_ERROR,
 });
-// delete news with cleaning store
 
 export const deleteNewsRecordRequest = (id) => ({
   type: DELETE_NEWS_RECORD_REQUEST, id,

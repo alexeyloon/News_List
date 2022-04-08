@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+
 // eslint-disable-next-line import/no-extraneous-dependencies
 import createSagaMiddleware from '@redux-saga/core';
-// eslint-disable-next-line no-unused-vars
 
 import rootReducer from './rootReducer';
 import apiSaga from '../sagas/api-saga';

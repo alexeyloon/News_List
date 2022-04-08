@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
+
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +22,6 @@ function PaginationOutlined({ totalPages, onButtonClick, currentPage }) {
           onChange={onButtonClick}
           page={currentPage}
           count={totalPages}
-
         />
       </div>
     </div>

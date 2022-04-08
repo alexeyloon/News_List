@@ -1,8 +1,5 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable react/no-unescaped-entities */
-//
 import React from 'react';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -35,7 +32,6 @@ export default function NewsItem({
   const classes = useStyles();
   const actualDateFormatted = moment(newsDate).locale('ru').format('DD.MM.YYYY');
   return (
-
     <Card className={classes.root}>
       <Button
         variant="contained"
@@ -51,7 +47,7 @@ export default function NewsItem({
           {newsTitle}
         </Typography>
         <Typography variant="h5" component="h2">
-          {newsText.substring(0, 200)}
+          {newsText.substring(0, 150)}
         </Typography>
         <Typography variant="body2" component="p">
           {actualDateFormatted}

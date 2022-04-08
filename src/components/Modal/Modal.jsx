@@ -10,7 +10,6 @@ function ModalWindow({
     <Modal onClose={onClose} id={id} open={open}>
       {children}
     </Modal>
-
   );
 }
 
