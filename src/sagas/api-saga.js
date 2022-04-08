@@ -74,13 +74,8 @@ function* addNewsRecordSaga(action) {
     if (newsList.length === 3) {
       yield put(setCurrentPage(totalPages + 1));
     }
-
-    const currentPage = yield select((state) => state.news.currentPage);
-    const limit = yield select((state) => state.news.limit);
-    const payload = yield call(fetchNews, { page: currentPage, limit });
-
-    yield put(addNewsRecordSuccess(payload));
-    yield put(getNewsRecordSuccess(payload));
+    yield put(addNewsRecordSuccess(action.id));
+    yield put(getNewsRecordSuccess(action.id));
   } catch (error) {
     yield put(addNewsRecordError());
   }
