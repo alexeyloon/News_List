@@ -54,12 +54,7 @@ function* deleteNewsRecordSaga(action) {
     if (newsList.length === 1) {
       yield put(setCurrentPage(totalPages - 1));
     }
-
-    const currentPage = yield select((state) => state.news.currentPage);
-    const limit = yield select((state) => state.news.limit);
-    const payload = yield call(fetchNews, { page: currentPage, limit });
-
-    yield put(deleteNewsRecordSuccess(payload));
+    yield put(deleteNewsRecordSuccess(action.id));
   } catch (error) {
     yield put(deleteNewsRecordError());
   }
